@@ -1,0 +1,29 @@
+{
+  "name": "discord-bot-pi-guy53",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RVCC-IDMX/discord-bot-Pi-Guy53.git"
+  },
+  "keywords": [],
+  "author": "Mihail Vaporakis <g00277963@stu.raritanval.edu> (https://github.com/Pi-Guy53)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/RVCC-IDMX/discord-bot-Pi-Guy53/issues"
+  },
+  "homepage": "https://github.com/RVCC-IDMX/discord-bot-Pi-Guy53#readme",
+  "devDependencies": {
+    "@eslint/create-config": "^0.4.3",
+    "eslint": "^8.39.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.27.5"
+  },
+  "dependencies": {
+    "discord.js": "^14.10.2"
+  }
+}
