@@ -24,6 +24,7 @@
     "eslint-plugin-import": "^2.27.5"
   },
   "dependencies": {
-    "discord.js": "^14.10.2"
+    "discord.js": "^14.10.2",
+    "dotenv": "^16.0.3"
   }
 }
