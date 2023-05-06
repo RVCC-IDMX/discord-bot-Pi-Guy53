@@ -18,7 +18,7 @@ module.exports = {
       .setURL('https://github.com/RVCC-IDMX/discord-bot-Pi-Guy53')
       .setStyle(ButtonStyle.Link);
 
-    const row = new ActionRowBuilder()
+    let row = new ActionRowBuilder()
       .addComponents(btn, gitLink);
 
     const response = await interaction.reply({
@@ -27,11 +27,12 @@ module.exports = {
 
     const collectorFilter = (i) => i.user.id === interaction.user.id;
     const confirmation = await response.awaitMessageComponent({ filter: collectorFilter });
+    row = new ActionRowBuilder().addComponents(gitLink);
 
     if (confirmation.customId === 'btn') {
-      await confirmation.update({ content: 'Ow! That hurt!', components: [] });
+      await confirmation.update({ content: 'Ow! That hurt!', components: [row] });
     } else {
-      await confirmation.update({ content: 'How did we get here? What did you press?!?', components: [] });
+      await confirmation.update({ content: 'How did we get here? What did you press?!?', components: [row] });
     }
   },
 };
