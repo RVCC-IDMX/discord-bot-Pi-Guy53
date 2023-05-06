@@ -29,10 +29,16 @@ module.exports = {
     }
 
     if (interaction.options.getChannel('channel') != null) {
-      // console.log(interaction.options.getChannel('channel'));
       userInput.channel = interaction.options.getChannel('channel');
-      await interaction.guild.channels.cache.get(`${userInput.channel.id}`).send(userInput.input);
-      await interaction.reply({ content: `echoed to ${userInput.channel}`, ephemeral: userInput.secretBool });
+      console.log(userInput.channel.type);
+
+      if (userInput.channel.type != 1) {
+        // console.log(interaction.options.getChannel('channel'));
+        await interaction.guild.channels.cache.get(`${userInput.channel.id}`).send(userInput.input);
+        await interaction.reply({ content: `echoed to ${userInput.channel}`, ephemeral: userInput.secretBool });
+      } else {
+        await interaction.reply({ content: `Could not be echoed ${userInput.channel} is not a valid channel`, ephemeral: userInput.secretBool });
+      }
     } else {
       await interaction.reply({ content: userInput.input, ephemeral: userInput.secretBool });
     }
