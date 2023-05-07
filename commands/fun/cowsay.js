@@ -27,17 +27,20 @@ async function getChoices(length) {
 
     if (c != 'ibm' && c != 'yasuna_08') {
       saidCow += cowsay.say({
-        text: '1',
+        text: length,
         f: c,
       });
-    }
 
-    if (saidCow.length < 1999 - length) {
-      choices.push(currentChoice[0]);
+      if (saidCow.length < 1999 - length.length) {
+        choices.push(currentChoice[0]);
+      }
     }
   }
 
-  // console.log(choices.length, 1999 - length);
+  // console.log(choices.length, 1999 - length.length);
+  // if (choices.length < 10) {
+  //   console.log(choices);
+  // }
   return choices;
 }
 
@@ -54,13 +57,14 @@ module.exports = {
     .setDescription('Said the Cow')
     .addStringOption((option) => option.setName('input')
       .setDescription('The text for the cow to say')
-      .setRequired(true))
+      .setRequired(true)
+      .setMaxLength(485))
     .addStringOption((option) => option.setName('cow')
       .setDescription('The animal to say it')
       .setAutocomplete(true)),
 
   async autocomplete(interaction) {
-    const length = 6 + interaction.options.getString('input').length;
+    const length = `123456${interaction.options.getString('input')}`;
 
     const focusedValue = interaction.options.getFocused();
     const choices = await getChoices(length);
@@ -81,7 +85,7 @@ module.exports = {
     if (animal != null && animal != '') {
       animalV = animal;
     } else {
-      const c = await getChoices();
+      const c = await getChoices(`123456${interaction.options.getString('input')}`);
       animalV = c[getRandomInt(0, c.length)];
     }
 
@@ -92,6 +96,8 @@ module.exports = {
 
     saidCow = saidCow.replaceAll('`', "'");
     saidCow = `\`\`\`${saidCow}\`\`\``;
+
+    // console.log(saidCow.length);
 
     await interaction.reply(saidCow);
   },
