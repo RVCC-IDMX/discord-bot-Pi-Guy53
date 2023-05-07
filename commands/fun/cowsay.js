@@ -68,11 +68,17 @@ module.exports = {
 
     const focusedValue = interaction.options.getFocused();
     const choices = await getChoices(length);
-    const filtered = choices.filter((choice) => choice.startsWith(focusedValue));
+    if (choices.length < 25) {
+      const filtered = choices.filter((choice) => choice.startsWith(focusedValue));
 
-    if (filtered.length < 25) {
+      if (filtered.length < 25) {
+        await interaction.respond(
+          filtered.map((choice) => ({ name: choice, value: choice })),
+        );
+      }
+    } else {
       await interaction.respond(
-        filtered.map((choice) => ({ name: choice, value: choice })),
+        choices.map((choice) => ({ name: choice, value: choice })),
       );
     }
   },
