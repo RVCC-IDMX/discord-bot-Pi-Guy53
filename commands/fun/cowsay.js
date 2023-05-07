@@ -68,7 +68,8 @@ module.exports = {
 
     const focusedValue = interaction.options.getFocused();
     const choices = await getChoices(length);
-    if (choices.length < 25) {
+
+    if (choices.length > 25) {
       const filtered = choices.filter((choice) => choice.startsWith(focusedValue));
 
       if (filtered.length < 25) {
